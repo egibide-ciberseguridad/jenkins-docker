@@ -2,6 +2,7 @@ help:
 	@echo Opciones:
 	@echo -------------------
 	@echo start / stop / restart
+	@echo build
 	@echo logs
 	@echo workspace
 	@echo stats
@@ -17,6 +18,9 @@ stop:
 	@docker-compose stop
 
 restart: stop start
+
+build:
+	@docker-compose build jenkins
 
 logs:
 	@docker-compose logs jenkins

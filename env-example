@@ -1,0 +1,11 @@
+# Prefijo para los contenedores
+COMPOSE_PROJECT_NAME=jenkins
+
+# Versiones de los contenedores
+JENKINS_VERSION=2.319.1
+BLUEOCEAN_VERSION=1.25.2
+DOCKER_WORKFLOW_VERSION=1.26
+HTTPS_PORTAL_VERSION=1
+
+# Host de Docker
+JENKINS_DOCKER_HOST=tcp://docker:2376

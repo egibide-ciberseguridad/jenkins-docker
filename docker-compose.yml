@@ -3,7 +3,6 @@ version: "3.5"
 services:
 
   https-portal:
-    container_name: https-portal
     image: steveltn/https-portal:${HTTPS_PORTAL_VERSION}
     environment:
       DOMAINS: >
@@ -22,7 +21,6 @@ services:
       - jenkins
 
   jenkins:
-    container_name: jenkins
     build:
       context: .
       dockerfile: Dockerfile.jenkins
@@ -44,7 +42,6 @@ services:
       - ./private/certs:/certs/client:ro
 
   java-runner:
-    container_name: java-runner
     build:
       context: .
       dockerfile: Dockerfile.java-runner

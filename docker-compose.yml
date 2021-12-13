@@ -25,7 +25,7 @@ services:
     container_name: jenkins
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.jenkins
       args:
         - JENKINS_VERSION=${JENKINS_VERSION}
         - BLUEOCEAN_VERSION=${BLUEOCEAN_VERSION}
@@ -43,9 +43,29 @@ services:
       - jenkins-data:/var/jenkins_home
       - ./private/certs:/certs/client:ro
 
+  java-runner:
+    container_name: java-runner
+    build:
+      context: .
+      dockerfile: Dockerfile.java-runner
+      args:
+        - INBOUND_AGENT_VERSION=${INBOUND_AGENT_VERSION}
+    networks:
+      - jenkins
+    environment:
+      - JENKINS_URL=http://jenkins:8080
+      - JENKINS_SECRET=${JAVA_RUNNER_SECRET}
+      - JENKINS_AGENT_NAME=java-runner
+      - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
+    volumes:
+      - java-runner-data:/home/jenkins/agent
+    depends_on:
+      - jenkins
+
 networks:
   jenkins:
 
 volumes:
   https-portal_certs:
   jenkins-data:
+  java-runner-data:

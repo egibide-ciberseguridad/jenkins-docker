@@ -34,6 +34,7 @@ services:
     networks:
       - jenkins
     environment:
+      - TZ=Europe/Madrid
       - DOCKER_HOST=${JENKINS_DOCKER_HOST}
       - DOCKER_CERT_PATH=/certs/client
       - DOCKER_TLS_VERIFY=1

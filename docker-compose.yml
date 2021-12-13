@@ -25,7 +25,7 @@ services:
     container_name: jenkins
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.jenkins
       args:
         - JENKINS_VERSION=${JENKINS_VERSION}
         - BLUEOCEAN_VERSION=${BLUEOCEAN_VERSION}

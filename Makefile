@@ -20,7 +20,7 @@ stop:
 restart: stop start
 
 build:
-	@docker-compose build jenkins
+	@docker-compose build
 
 logs:
 	@docker-compose logs jenkins

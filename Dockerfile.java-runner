@@ -1,0 +1,9 @@
+ARG INBOUND_AGENT_VERSION
+
+FROM jenkins/inbound-agent:${INBOUND_AGENT_VERSION}-jdk11
+
+USER root
+
+RUN apt-get update && apt-get install -y maven
+
+USER jenkins

@@ -26,8 +26,6 @@ services:
       dockerfile: Dockerfile.jenkins
       args:
         - JENKINS_VERSION=${JENKINS_VERSION}
-        - BLUEOCEAN_VERSION=${BLUEOCEAN_VERSION}
-        - DOCKER_WORKFLOW_VERSION=${DOCKER_WORKFLOW_VERSION}
     expose:
       - 8080
       - 50000

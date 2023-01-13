@@ -1,6 +1,4 @@
 ARG JENKINS_VERSION
-ARG BLUEOCEAN_VERSION
-ARG DOCKER_WORKFLOW_VERSION
 
 FROM jenkins/jenkins:${JENKINS_VERSION}-jdk11
 
@@ -20,4 +18,4 @@ RUN apt-get update && apt-get install -y docker-ce-cli docker-compose
 
 USER jenkins
 
-RUN jenkins-plugin-cli --plugins "blueocean:${BLUEOCEAN_VERSION} docker-workflow:${DOCKER_WORKFLOW_VERSION}"
+RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"

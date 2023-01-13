@@ -31,26 +31,26 @@ _urls: _header
 	@echo ------------------------------
 
 _start-command:
-	@docker-compose up -d --remove-orphans
+	@docker compose up -d --remove-orphans
 
 start: _header _start-command _urls
 
 stop:
-	@docker-compose stop
+	@docker compose stop
 
 restart: stop start
 
 build:
-	@docker-compose build
+	@docker compose build
 
 logs:
-	@docker-compose logs jenkins
+	@docker compose logs jenkins
 
 workspace:
-	@docker-compose exec jenkins /bin/bash
+	@docker compose exec jenkins /bin/bash
 
 stats:
 	@docker stats
 
 clean:
-	@docker-compose down -v --remove-orphans
+	@docker compose down -v --remove-orphans

@@ -3,14 +3,12 @@ COMPOSE_PROJECT_NAME=jenkins
 
 # Versiones de los contenedores
 HTTPS_PORTAL_VERSION=1
-JENKINS_VERSION=2.319.1
-BLUEOCEAN_VERSION=1.25.2
-DOCKER_WORKFLOW_VERSION=1.26
-INBOUND_AGENT_VERSION=4.10-3
+JENKINS_VERSION=lts
+INBOUND_AGENT_VERSION=latest
 
-# Host de Docker
-JENKINS_DOCKER_HOST=tcp://docker:2376
-
-# Claves de conexión de los runners de Jenkins
+# Claves de conexión de los runners de Jenkins (se generan al dar de alta los nodos en Jenkins)
 JAVA_RUNNER_SECRET=fa05e9...d23c0a
 PHP_RUNNER_SECRET=e67d89...21e041
+
+# Host de Docker para despliegue
+JENKINS_DOCKER_HOST=tcp://docker:2376

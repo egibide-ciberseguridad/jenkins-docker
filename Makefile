@@ -10,14 +10,14 @@ endif
 help: _header
 	${info }
 	@echo Opciones:
-	@echo ------------------------------
+	@echo ------------------------------------------
 	@echo start / stop / restart
 	@echo build
 	@echo logs
-	@echo workspace
+	@echo workspace / workspace-java / workspace-php
 	@echo stats
 	@echo clean
-	@echo ------------------------------
+	@echo ------------------------------------------
 
 _header:
 	@echo -------
@@ -26,9 +26,9 @@ _header:
 
 _urls: _header
 	${info }
-	@echo ------------------------------
+	@echo ------------------------------------------
 	@echo [Jenkins] https://jenkins.test
-	@echo ------------------------------
+	@echo ------------------------------------------
 
 _start-command:
 	@docker compose up -d --remove-orphans
@@ -48,6 +48,12 @@ logs:
 
 workspace:
 	@docker compose exec jenkins /bin/bash
+
+workspace-java:
+	@docker compose exec java-runner /bin/bash
+
+workspace-php:
+	@docker compose exec php-runner /bin/bash
 
 stats:
 	@docker stats

@@ -5,6 +5,7 @@ COMPOSE_PROJECT_NAME=jenkins
 HTTPS_PORTAL_VERSION=1
 JENKINS_VERSION=lts-jdk11
 INBOUND_AGENT_VERSION=latest-jdk11
+PHP_VERSION=8.0
 
 # Claves de conexión de los runners de Jenkins (se generan al dar de alta los nodos en Jenkins)
 JAVA_RUNNER_SECRET=fa05e9...d23c0a

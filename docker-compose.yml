@@ -55,6 +55,7 @@ services:
     networks:
       - jenkins
     environment:
+      - TZ=Europe/Madrid
       - JENKINS_URL=http://jenkins:8080
       - JENKINS_SECRET=${JAVA_RUNNER_SECRET}
       - JENKINS_AGENT_NAME=java-runner
@@ -75,6 +76,7 @@ services:
     networks:
       - jenkins
     environment:
+      - TZ=Europe/Madrid
       - JENKINS_URL=http://jenkins:8080
       - JENKINS_SECRET=${PHP_RUNNER_SECRET}
       - JENKINS_AGENT_NAME=php-runner

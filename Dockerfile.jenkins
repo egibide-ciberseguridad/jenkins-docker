@@ -1,6 +1,6 @@
 ARG JENKINS_VERSION
 
-FROM jenkins/jenkins:${JENKINS_VERSION}-jdk11
+FROM jenkins/jenkins:${JENKINS_VERSION}
 
 USER root
 

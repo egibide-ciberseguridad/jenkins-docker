@@ -71,6 +71,7 @@ services:
       dockerfile: Dockerfile.php-runner
       args:
         - INBOUND_AGENT_VERSION=${INBOUND_AGENT_VERSION}
+        - PHP_VERSION=${PHP_VERSION}
     networks:
       - jenkins
     environment:

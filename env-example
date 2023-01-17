@@ -12,4 +12,6 @@ JAVA_RUNNER_SECRET=fa05e9...d23c0a
 PHP_RUNNER_SECRET=e67d89...21e041
 
 # Host de Docker para despliegue
-JENKINS_DOCKER_HOST=tcp://docker:2376
+JENKINS_DOCKER_HOST=docker.ciber-egibide.eu
+JENKINS_DOCKER_USER=root
+JENKINS_DOCKER_PORT=22

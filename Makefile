@@ -15,6 +15,7 @@ help: _header
 	@echo build
 	@echo logs
 	@echo workspace / workspace-java / workspace-php
+	@echo ssh
 	@echo stats
 	@echo clean
 	@echo ------------------------------------------
@@ -54,6 +55,9 @@ workspace-java:
 
 workspace-php:
 	@docker compose exec php-runner /bin/bash
+
+ssh:
+	@docker compose exec php-runner /home/jenkins/generar_clave.sh ${JENKINS_DOCKER_HOST}
 
 stats:
 	@docker stats

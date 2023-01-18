@@ -57,7 +57,7 @@ services:
       - JENKINS_AGENT_NAME=java-runner
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
     volumes:
-      - java-runner-data:/home/jenkins/agent
+      - java-runner-data:/home/jenkins
     depends_on:
       jenkins:
         condition: service_healthy
@@ -79,7 +79,7 @@ services:
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
       - DOCKER_HOST=ssh://${JENKINS_DOCKER_USER}@${JENKINS_DOCKER_HOST}:${JENKINS_DOCKER_PORT}
     volumes:
-      - php-runner-data:/home/jenkins/agent
+      - php-runner-data:/home/jenkins
     depends_on:
       jenkins:
         condition: service_healthy

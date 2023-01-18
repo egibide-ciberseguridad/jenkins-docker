@@ -11,7 +11,7 @@ help: _header
 	${info }
 	@echo Opciones:
 	@echo ------------------------------------------
-	@echo start / stop / restart
+	@echo start / stop / restart / stop-all
 	@echo build
 	@echo logs
 	@echo workspace / workspace-java / workspace-php
@@ -40,6 +40,9 @@ stop:
 	@docker compose stop
 
 restart: stop start
+
+stop-all:
+	@docker stop $(shell docker ps -aq)
 
 build:
 	@docker compose build

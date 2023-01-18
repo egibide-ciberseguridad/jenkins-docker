@@ -4,7 +4,7 @@ mkdir -p ~/.ssh && chmod 0700 ~/.ssh
 
 cd ~/.ssh || exit
 
-ssh-keyscan "$1" >>~/.ssh/known_hosts 2>/dev/null
+ssh-keyscan "$1" >~/.ssh/known_hosts 2>/dev/null
 
 echo
 if [ -s ~/.ssh/known_hosts ]; then
@@ -13,11 +13,10 @@ else
   echo "ERROR: No se ha podido actualizar el fichero de claves conocidas del host: $1"
 fi
 
-rm -f id_rsa
-rm -f id_rsa.pub
-
-ssh-keygen -b 2048 -t rsa -f id_rsa -q -N ""
-chmod 400 id_rsa
+if [ ! -f id_rsa ]; then
+  ssh-keygen -b 2048 -t rsa -f id_rsa -q -N ""
+  chmod 400 id_rsa
+fi
 
 echo
 echo "Clave pública generada:"

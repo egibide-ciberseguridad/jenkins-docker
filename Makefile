@@ -57,7 +57,7 @@ workspace-php:
 	@docker compose exec php-runner /bin/bash
 
 ssh:
-	@docker compose exec php-runner /home/jenkins/generar_clave.sh ${JENKINS_DOCKER_HOST}
+	@docker compose exec php-runner generar_clave.sh ${JENKINS_DOCKER_HOST}
 
 stats:
 	@docker stats

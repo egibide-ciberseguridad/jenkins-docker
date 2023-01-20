@@ -45,4 +45,7 @@ RUN apt-get install -y nodejs npm
 COPY generar_clave.sh /usr/local/bin/generar_clave.sh
 RUN chmod +x /usr/local/bin/generar_clave.sh
 
+# Convertir la codificación del script (por si estamos construyendo en Windows)
+RUN apt-get install -y dos2unix && dos2unix /usr/local/bin/generar_clave.sh
+
 USER jenkins

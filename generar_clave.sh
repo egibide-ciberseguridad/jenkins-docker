@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 mkdir -p ~/.ssh && chmod 0700 ~/.ssh
 

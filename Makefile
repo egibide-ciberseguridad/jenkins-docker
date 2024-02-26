@@ -11,12 +11,13 @@ help: _header
 	${info }
 	@echo Opciones:
 	@echo ------------------------------------------
-	@echo start / stop / restart / stop-all
 	@echo build
-	@echo logs
+	@echo start / stop / restart / stop-all
+	@echo password
+	@echo ------------------------------------------
 	@echo workspace / workspace-java / workspace-php
 	@echo ssh
-	@echo stats
+	@echo logs / stats
 	@echo clean
 	@echo ------------------------------------------
 
@@ -31,6 +32,9 @@ _urls: _header
 	@echo [Jenkins] https://jenkins.test
 	@echo ------------------------------------------
 
+build:
+	@docker compose build --pull
+
 _start-command:
 	@docker compose up -d --remove-orphans
 
@@ -44,11 +48,8 @@ restart: stop start
 stop-all:
 	@docker stop $(shell docker ps -aq)
 
-build:
-	@docker compose build
-
-logs:
-	@docker compose logs jenkins
+password:
+	@docker compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 workspace:
 	@docker compose exec jenkins /bin/bash
@@ -61,6 +62,9 @@ workspace-php:
 
 ssh:
 	@docker compose exec php-runner generar_clave.sh ${JENKINS_DOCKER_HOST}
+
+logs:
+	@docker compose logs jenkins
 
 stats:
 	@docker stats

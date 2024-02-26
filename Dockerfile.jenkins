@@ -14,4 +14,4 @@ ENV DEBIAN_FRONTEND noninteractive
 
 USER jenkins
 
-RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
+RUN jenkins-plugin-cli --plugins "docker-workflow"

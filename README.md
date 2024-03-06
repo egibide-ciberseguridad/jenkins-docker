@@ -20,7 +20,7 @@ Servidor [Jenkins](https://www.jenkins.io) en un contenedor Docker.
 
 4. Acceder al servidor [Jenkins](https://jenkins.test).
 
-> Para obtener el token que pide en la pantalla inicial, usar el comando `make logs` para ver el log del contenedor.
+> Para obtener el token que pide en la pantalla inicial, usar el comando `make password`.
 
 ## Referencias
 

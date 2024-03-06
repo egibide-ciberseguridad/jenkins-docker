@@ -3,7 +3,7 @@ COMPOSE_PROJECT_NAME=jenkins
 
 # Versiones de los contenedores
 HTTPS_PORTAL_VERSION=1
-JENKINS_VERSION=lts-jdk17
+JENKINS_VERSION=latest-jdk17
 INBOUND_AGENT_VERSION=latest-jdk17
 PHP_VERSION=8.3
 

@@ -1,4 +1,4 @@
-ARG JENKINS_VERSION
+ARG JENKINS_VERSION=latest-jdk17
 
 FROM jenkins/jenkins:${JENKINS_VERSION}
 

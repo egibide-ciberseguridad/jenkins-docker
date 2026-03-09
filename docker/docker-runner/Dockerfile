@@ -1,5 +1,7 @@
 # Use the official Jenkins agent image as the base
-FROM jenkins/inbound-agent:latest
+ARG INBOUND_AGENT_VERSION=latest-jdk17
+
+FROM jenkins/inbound-agent:${INBOUND_AGENT_VERSION}
 
 # Switch to the root user to install packages
 USER root

@@ -91,6 +91,27 @@ services:
       jenkins:
         condition: service_healthy
 
+  docker-runner:
+    build:
+      context: docker/docker-runner
+      dockerfile: Dockerfile
+      args:
+        - INBOUND_AGENT_VERSION=${INBOUND_AGENT_VERSION}
+    privileged: true
+    networks:
+      - jenkins
+    environment:
+      - TZ=Europe/Madrid
+      - JENKINS_URL=http://jenkins:8080
+      - JENKINS_SECRET=${DOCKER_RUNNER_SECRET}
+      - JENKINS_AGENT_NAME=docker-runner
+      - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
+    volumes:
+      - docker-runner-data:/home/jenkins
+    depends_on:
+      jenkins:
+        condition: service_healthy
+
 networks:
   jenkins:
 
@@ -99,3 +120,4 @@ volumes:
   jenkins-data:
   java-runner-data:
   php-runner-data:
+  docker-runner-data:

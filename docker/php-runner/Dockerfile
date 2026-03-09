@@ -33,7 +33,7 @@ RUN apt-get install -y ca-certificates apt-transport-https wget nano
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 RUN sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 RUN apt-get update
-RUN apt-get install -y php${PHP_VERSION}-cli php${PHP_VERSION}-opcache php${PHP_VERSION}-sqlite php${PHP_VERSION}-xml php${PHP_VERSION}-curl
+RUN apt-get install -y php${PHP_VERSION}-cli php${PHP_VERSION}-sqlite php${PHP_VERSION}-xml php${PHP_VERSION}-curl
 
 # Instalar composer
 RUN apt-get install -y composer

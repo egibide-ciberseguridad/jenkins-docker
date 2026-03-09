@@ -108,6 +108,8 @@ services:
       - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
     volumes:
       - docker-runner-data:/home/jenkins
+    tmpfs:
+      - /var/run
     depends_on:
       jenkins:
         condition: service_healthy

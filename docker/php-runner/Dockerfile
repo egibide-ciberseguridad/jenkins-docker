@@ -8,21 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # ----------------------------------------
 
-# Instalar el cliente de Docker
 RUN apt-get update && apt-get install -y lsb-release curl
-
-RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
-  https://download.docker.com/linux/debian/gpg
-
-RUN echo "deb [arch=$(dpkg --print-architecture) \
-  signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
-  https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
-
-RUN apt-get update && apt-get install -y docker-ce-cli docker-compose-plugin
-
-# Redireccionar el domando docker-compose antiguo al nuevo: https://stackoverflow.com/a/72187587
-RUN echo 'docker compose "$@"' > /bin/docker-compose && chmod +x /bin/docker-compose
 
 # Instalar PHP8: https://www.linuxcapable.com/how-to-install-php-8-on-debian-11-bullseye/
 ARG PHP_VERSION=8.3
@@ -40,12 +26,5 @@ RUN apt-get install -y composer
 
 # Instalar node
 RUN apt-get install -y nodejs npm
-
-# Copiar el script para crear la clave SSH
-COPY generar_clave.sh /usr/local/bin/generar_clave.sh
-RUN chmod +x /usr/local/bin/generar_clave.sh
-
-# Convertir la codificación del script (por si estamos construyendo en Windows)
-RUN apt-get install -y dos2unix && dos2unix /usr/local/bin/generar_clave.sh
 
 USER jenkins

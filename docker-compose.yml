@@ -21,7 +21,7 @@ services:
   jenkins:
     build:
       context: .
-      dockerfile: Dockerfile.jenkins
+      dockerfile: docker/jenkins/Dockerfile
       args:
         - JENKINS_VERSION=${JENKINS_VERSION}
     expose:
@@ -43,7 +43,7 @@ services:
   java-runner:
     build:
       context: .
-      dockerfile: Dockerfile.java-runner
+      dockerfile: docker/java-runner/Dockerfile
       args:
         - INBOUND_AGENT_VERSION=${INBOUND_AGENT_VERSION}
     networks:
@@ -63,7 +63,7 @@ services:
   php-runner:
     build:
       context: .
-      dockerfile: Dockerfile.php-runner
+      dockerfile: docker/php-runner/Dockerfile
       args:
         - INBOUND_AGENT_VERSION=${INBOUND_AGENT_VERSION}
         - PHP_VERSION=${PHP_VERSION}

@@ -14,7 +14,7 @@ services:
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-dashboard.entrypoints=websecure"
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-dashboard.tls=true"
     networks:
-      - traefik
+      - jenkins
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
@@ -37,7 +37,6 @@ services:
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-jenkins.tls=true"
       - "traefik.http.services.${COMPOSE_PROJECT_NAME}-jenkins.loadbalancer.server.port=8080"
     networks:
-      - traefik
       - jenkins
     environment:
       - TZ=Europe/Madrid
@@ -93,7 +92,6 @@ services:
         condition: service_healthy
 
 networks:
-  traefik:
   jenkins:
 
 volumes:

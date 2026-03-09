@@ -1,20 +1,23 @@
 services:
 
-  https-portal:
-    image: steveltn/https-portal:${HTTPS_PORTAL_VERSION}
-    environment:
-      DOMAINS: >
-        jenkins.test -> http://jenkins:8080,
-      CLIENT_MAX_BODY_SIZE: 1024M
-      SERVER_NAMES_HASH_BUCKET_SIZE: 1024
-      STAGE: local
-    volumes:
-      - https-portal_certs:/var/lib/https-portal
+  traefik:
+    image: traefik:${TRAEFIK_VERSION:-3}
     ports:
       - "80:80"
       - "443:443"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-dashboard.rule=Host(`${FQDN_TRAEFIK:-traefik.test}`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-dashboard.service=api@internal"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-dashboard.entrypoints=websecure"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-dashboard.tls=true"
     networks:
-      - jenkins
+      - traefik
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
     depends_on:
       - jenkins
 
@@ -27,7 +30,14 @@ services:
     expose:
       - 8080
       - 50000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-jenkins.rule=Host(`${FQDN_JENKINS:-jenkins.test}`)"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-jenkins.entrypoints=websecure"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-jenkins.tls=true"
+      - "traefik.http.services.${COMPOSE_PROJECT_NAME}-jenkins.loadbalancer.server.port=8080"
     networks:
+      - traefik
       - jenkins
     environment:
       - TZ=Europe/Madrid
@@ -83,6 +93,7 @@ services:
         condition: service_healthy
 
 networks:
+  traefik:
   jenkins:
 
 volumes:

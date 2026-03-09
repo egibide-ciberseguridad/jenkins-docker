@@ -43,3 +43,4 @@ Servidor [Jenkins](https://www.jenkins.io) en un contenedor Docker.
 
 - [Instrucciones de instalación](https://www.jenkins.io/doc/book/installing/docker/) de Jenkins para Docker.
 - [Imagen de contenedor Docker](https://github.com/jenkinsci/docker-inbound-agent) para crear agentes distribuidos.
+- [Jenkins Docker-in-Docker Agent](https://www.kalitsune.net/blog/jenkins-dind-agent).

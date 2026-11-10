@@ -27,6 +27,7 @@ services:
       dockerfile: docker/jenkins/Dockerfile
       args:
         - JENKINS_VERSION=${JENKINS_VERSION}
+    hostname: jenkins
     expose:
       - 8080
       - 50000
@@ -55,6 +56,7 @@ services:
       dockerfile: docker/java-runner/Dockerfile
       args:
         - INBOUND_AGENT_VERSION=${INBOUND_AGENT_VERSION}
+    hostname: java
     networks:
       - jenkins
     environment:
@@ -76,6 +78,7 @@ services:
       args:
         - INBOUND_AGENT_VERSION=${INBOUND_AGENT_VERSION}
         - PHP_VERSION=${PHP_VERSION}
+    hostname: php
     networks:
       - jenkins
     environment:
@@ -97,6 +100,7 @@ services:
       dockerfile: Dockerfile
       args:
         - INBOUND_AGENT_VERSION=${INBOUND_AGENT_VERSION}
+    hostname: docker
     privileged: true
     networks:
       - jenkins

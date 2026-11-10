@@ -10,6 +10,7 @@ PHP_VERSION=8.4
 # Claves de conexión de los runners de Jenkins (se generan al dar de alta los nodos en Jenkins)
 JAVA_RUNNER_SECRET=fa05e9...d23c0a
 PHP_RUNNER_SECRET=e67d89...21e041
+DOCKER_RUNNER_SECRET=e67d89...21e041
 
 # Host de Docker para despliegue
 JENKINS_DOCKER_HOST=docker.ciber-egibide.eu

@@ -15,7 +15,7 @@ help: _header
 	@echo start / stop / restart / stop-all
 	@echo password
 	@echo ------------------------------------------
-	@echo workspace / workspace-java / workspace-php
+	@echo "workspace [contenedor=java|php|docker]"
 	@echo ssh
 	@echo logs / stats
 	@echo clean
@@ -51,14 +51,14 @@ stop-all:
 password:
 	@docker compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
+contenedor?=
+
 workspace:
+ifeq ($(strip $(contenedor)),)
 	@docker compose exec jenkins /bin/bash
-
-workspace-java:
-	@docker compose exec java-runner /bin/bash
-
-workspace-php:
-	@docker compose exec php-runner /bin/bash
+else
+	@docker compose exec $(contenedor)-runner /bin/bash
+endif
 
 ssh:
 	@docker compose exec php-runner generar_clave.sh ${JENKINS_DOCKER_HOST}

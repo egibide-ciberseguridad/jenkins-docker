@@ -12,11 +12,10 @@ help: _header
 	@echo Opciones:
 	@echo ------------------------------------------
 	@echo build
-	@echo start / stop / restart / stop-all
+	@echo start / stop / restart
 	@echo password
 	@echo ------------------------------------------
 	@echo "workspace [contenedor=java|php|docker]"
-	@echo ssh
 	@echo logs / stats
 	@echo clean
 	@echo ------------------------------------------
@@ -41,12 +40,9 @@ _start-command:
 start: _header _start-command _urls
 
 stop:
-	@docker compose stop
+	@docker compose down
 
 restart: stop start
-
-stop-all:
-	@docker stop $(shell docker ps -aq)
 
 password:
 	@docker compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
@@ -59,9 +55,6 @@ ifeq ($(strip $(contenedor)),)
 else
 	@docker compose exec $(contenedor)-runner /bin/bash
 endif
-
-ssh:
-	@docker compose exec php-runner generar_clave.sh ${JENKINS_DOCKER_HOST}
 
 logs:
 	@docker compose logs jenkins
